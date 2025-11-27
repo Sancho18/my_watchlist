@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_watchlist/app/core/utils/routs.dart';
+import 'package:my_watchlist/app/data/models/movie_model.dart';
+import 'package:my_watchlist/app/modules/favorites/controller/favorites_controller.dart';
+import 'package:my_watchlist/app/modules/home/bindings/home_binding.dart';
 
 void main() async {
   try {
