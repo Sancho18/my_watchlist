@@ -8,17 +8,15 @@ class DetailsView extends GetView<DetailsController> {
 
    @override
   Widget build(BuildContext context) {
-    // Pega a instância global do FavoritesController
     final favoritesController = Get.find<FavoritesController>();
 
     return Scaffold(
       appBar: AppBar(
         title: Obx(() => Text(controller.movie.value?.title ?? 'Detalhes')),
-        // Adiciona a seção de ações na AppBar
         actions: [
           Obx(() {
             if (controller.movie.value == null) {
-              return const SizedBox.shrink(); // Não mostra nada se o filme não carregou
+              return const SizedBox.shrink();
             }
             final isFav = favoritesController.isFavorite(controller.movie.value!.id);
             return IconButton(
@@ -42,13 +40,9 @@ class DetailsView extends GetView<DetailsController> {
           return const Center(child: Text('Filme não encontrado.'));
         }
 
-        // Se chegou aqui, temos os dados do filme
         final movie = controller.movie.value!;
         final imageUrl = 'https://image.tmdb.org/t/p/w500${movie.posterPath}';
-
-        // Formata a lista de gêneros para uma única string
         final genres = movie.genres?.map((g) => g.name).join(', ') ?? 'N/A';
-
         return SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(

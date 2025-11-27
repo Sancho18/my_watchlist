@@ -6,7 +6,7 @@ import 'package:my_watchlist/app/data/repositories/movie_repository.dart';
 
 class HomeController extends GetxController {
   final MovieRepository _repository;
-  final RxBool isLoading = false.obs; // Inicializa como false
+  final RxBool isLoading = false.obs;
   final RxList<Movie> popularMovies = <Movie>[].obs;
   final RxList<Movie> topRatedMovies = <Movie>[].obs;
 
@@ -25,18 +25,14 @@ class HomeController extends GetxController {
       return;
     }
 
-    isLoading.value = true; // Define como true assim que começa
+    isLoading.value = true;
 
     try {
       log('Iniciando busca de filmes populares');
       isLoading.value = true;
-
-      // Primeiro garante que o repository está inicializado
       log('Aguardando inicialização do repository...');
       await _repository.ensureInitialized();
       log('Repository inicializado com sucesso');
-
-      // Tenta buscar direto da API primeiro
       log('Tentando buscar da API primeiro...');
       try {
         final moviesFromApi = await _repository.refreshPopularMovies();
@@ -49,8 +45,6 @@ class HomeController extends GetxController {
       } catch (apiError) {
         log('Erro ao buscar da API, tentando cache: $apiError');
       }
-
-      // Se falhar na API, tenta do cache
       var movies = await _repository.getPopularMovies();
       log('Filmes recuperados do cache: ${movies.length}');
 
