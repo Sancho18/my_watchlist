@@ -9,33 +9,22 @@ enum SearchState { initial, loading, success, empty, error }
 class SearchController extends GetxController {
   final MovieProvider _movieProvider = MovieProvider();
   final TextEditingController textController = TextEditingController();
-
-  // Variáveis reativas
   final searchResults = <Movie>[].obs;
   final searchState = SearchState.initial.obs;
-  
-  // Esta variável observará o texto digitado pelo usuário
   final _searchTerm = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
-    // Aqui está a mágica do DEBOUNCE!
-    // O GetX vai esperar o usuário parar de digitar por 800ms
-    // antes de chamar a função de busca.
     debounce(
       _searchTerm,
       (value) => _searchMovies(value),
       time: const Duration(milliseconds: 800),
     );
   }
-
-  // Este método é chamado a cada letra digitada no TextField
   void onSearchChanged(String term) {
     _searchTerm.value = term;
   }
-
-  // Este método privado é o que realmente chama a API
   Future<void> _searchMovies(String query) async {
     if (query.isEmpty) {
       searchState.value = SearchState.initial;

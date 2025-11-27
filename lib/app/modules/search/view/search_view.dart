@@ -8,15 +8,13 @@ class SearchView extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
-    // Pegamos o controller de favoritos para usar nos resultados da busca
     final favoritesController = Get.find<FavoritesController>();
 
     return Scaffold(
       appBar: AppBar(
-        // Usamos a propriedade 'title' para o campo de busca
         title: TextField(
           controller: controller.textController,
-          autofocus: true, // Já abre o teclado automaticamente
+          autofocus: true,
           onChanged: controller.onSearchChanged,
           decoration: InputDecoration(
             hintText: 'Buscar filmes...',
@@ -27,7 +25,6 @@ class SearchView extends GetView<SearchController> {
         ),
       ),
       body: Obx(() {
-        // Um switch para construir a UI de acordo com o estado atual
         return switch (controller.searchState.value) {
           SearchState.initial => const Center(
             child: Text('Digite para buscar um filme'),

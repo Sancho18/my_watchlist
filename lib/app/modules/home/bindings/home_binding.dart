@@ -8,7 +8,6 @@ class HomeBinding extends Bindings {
   @override
   void dependencies() {
     try {
-      // 1. Registra o repository de forma síncrona
       final repository = MovieRepository();
       Get.put<MovieRepository>(
         repository,
@@ -16,7 +15,6 @@ class HomeBinding extends Bindings {
       );
       log('MovieRepository registrado com sucesso');
 
-      // 2. Registra o controller
       final controller = HomeController(repository);
       Get.put<HomeController>(
         controller,
