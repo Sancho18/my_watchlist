@@ -5,7 +5,7 @@ import 'package:my_watchlist/app/data/models/movie_model.dart';
 
 class MovieProvider {
   final Dio _dio = Dio();
-  final String _apiKey = 'e4157328b51b2cce34d80e2f8b560d23';
+  final String _apiKey = 'YOUR_API_KEY';
   final String _baseUrl = 'https://api.themoviedb.org/3';
 
   Future<List<Movie>> getPopularMovies() async {

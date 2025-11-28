@@ -3,9 +3,9 @@ import 'package:my_watchlist/app/data/models/genre_model.dart';
 
 part 'movie_model.g.dart';
 
-@HiveType(typeId: 0) // Identificador único para este tipo de objeto
+@HiveType(typeId: 0)
 class Movie {
-  @HiveField(0) // Índice único para cada campo
+  @HiveField(0)
   final int id;
 
   @HiveField(1)
@@ -20,8 +20,6 @@ class Movie {
   @HiveField(4)
   final double voteAverage;
 
-  // Campos de detalhes (não precisam ser salvos na lista principal)
-  // Não vamos anotá-los com @HiveField por enquanto para simplificar.
   final List<Genre>? genres;
   final int? runtime;
 
